@@ -1,7 +1,6 @@
 from sklearn import datasets
 from sklearn.cross_validation import train_test_split as tp
 from sklearn.tree import DecisionTreeClassifier
-from sklearn.neighbors import KNeighborsClassifier
 
 
 def accuracyScore(a, b):
@@ -22,21 +21,6 @@ xTrain, xTest, yTrain, yTest = tp(x, y, test_size=0.5)
 dtClassifier = DecisionTreeClassifier()
 dtClassifier.fit(xTrain, yTrain)
 
-prediction1 = dtClassifier.predict(xTest)
+prediction = dtClassifier.predict(xTest)
 
-knnClassifier = KNeighborsClassifier()
-knnClassifier.fit(xTrain, yTrain)
-
-prediction2 = knnClassifier.predict(xTest)
-
-score1 = accuracyScore(prediction1, yTest)
-score2 = accuracyScore(prediction2, yTest)
-
-print(score1, score2, sep='  ')
-
-if score1 > score2:
-    print("Decision Tree performs better")
-elif score2 > score1:
-    print("KNN performs better")
-else:
-    print("Both the classifiers perform the same")
+print("Accuracy of DT Classifer: {}".format(accuracyScore(prediction, yTest)))
